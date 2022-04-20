@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
+<title>Add Topic</title>
+<meta charset="UTF-8"/>
 
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -18,30 +21,47 @@
 html, body, .login-box {
 	height: 100%;
 }
+
+#submit-btn {
+	color: white !important;
+}
+
 </style>
 </head>
 
 <body>
+	<nav>
+		<div class="nav-wrapper indigo darken-1">
+			<a href="#!" class="brand-logo center">TWITTER SENTIMENT ANALYSIS</a>
+			<!-- <ul class="left hide-on-med-and-down">-->
+			<ul class="right">
+				<li class="active"><a href="/add-topic">Add Topics</a></li>
+				<li><a href="/view-topic">View Topics</a></li>
+			</ul>
+		</div>
+	</nav>
 	<div class="valign-wrapper row login-box">
 		<div class="col card hoverable s10 pull-s1 m4 pull-m4 l4 pull-l4">
-			<form>
+			<form id="add-topic-form" action="#" th:action="@{/create-topic}" th:object="${topic}" method="post">
 				<div class="card-content">
-					<span class="card-title">Add Topic</span>
+					<span class="card-title" style="text-align: center; font-weight: bold">Add Topic</span>
+					<hr/>
 					<div class="row">
 						<div class="input-field col s12">
 							<label for="title">Title</label> <input type="text"
-								class="validate" name="title" id="title" />
+								class="validate" th:field="*{title}" name="title" id="title" />
 						</div>
 						<div class="input-field col s12">
 							<label for="description">Description </label> <input type="text"
-								class="validate" name="description" id="description" />
+								class="validate" th:field="*{description}" name="description" id="description" />
 						</div>
 					</div>
 				</div>
 				<div class="card-action right-align">
 					<input type="reset" id="reset"
-						class="btn-flat grey-text waves-effect"> <input
-						type="submit" class="btn green waves-effect waves-light"
+						class="btn-flat waves-effect"> 
+						<input type="submit" id="submit-btn"
+						class="btn pink waves-effect waves-light" 
 						value="Submit">
 				</div>
 			</form>
@@ -57,6 +77,23 @@ html, body, .login-box {
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+	<script>
+		
+		$("#add-topic-form").on("submit", function(event) {
+		    event.preventDefault();
+
+		    if ($("#title").val() == "") {
+				M.toast({html: 'Enter Title', classes: 'rounded'});
+				return;
+			} else if ($("#description").val() == "") {
+				M.toast({html: 'Enter Description', classes: 'rounded'});
+				return;
+			}
+
+		    $(this).off("submit");
+
+		    this.submit();
+		});
 	</script>
 </body>
 
