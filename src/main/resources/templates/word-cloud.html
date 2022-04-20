@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>View Topics</title>
+<meta charset="UTF-8" />
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	
+<link rel="stylesheet" href="/css/jqcloud.min.css">
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+html, body, .login-box {
+	height: 100%;
+}
+</style>
+</head>
+
+<body>
+	<nav>
+		<div class="nav-wrapper indigo darken-1">
+			<a href="#!" class="brand-logo center">TWITTER SENTIMENT ANALYSIS</a>
+			<ul class="right">
+				<li><a href="/add-topic">Add Topics</a></li>
+				<li class="active"><a href="/view-topic">View Topics</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="valign-wrapper row login-box">
+		<div class="col card s10 pull-s1 m4 pull-m4 l4 pull-l4">
+			<div class="card-content">
+				<span class="card-title" style="text-align: center; font-weight: bold">Word Cloud</span>
+				<hr/>
+				<div id="demo">
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+	<script src="/js/jqcloud.min.js"></script>
+	
+	<script>
+		$(document).ready(function() {
+			var words = [
+			  {text: "Lorem", weight: 90},
+			  {text: "Ipsum", weight: 10.5},
+			  {text: "Dolor", weight: 9.4},
+			  {text: "Sit", weight: 8},
+			  {text: "Amet", weight: 6.2},
+			  {text: "Consectetur", weight: 5},
+			  {text: "Adipiscing", weight: 5},
+			];
+
+			$('#demo').jQCloud(words, {
+				  width: 500,
+				  height: 450
+			});
+		});
+		
+	</script>
+	
+</body>
+
+</html>
