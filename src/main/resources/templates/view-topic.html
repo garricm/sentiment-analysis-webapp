@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+<title>View Topics</title>
+<meta charset="UTF-8" />
 
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -22,35 +24,44 @@ html, body, .login-box {
 </head>
 
 <body>
+	<nav>
+		<div class="nav-wrapper indigo darken-1">
+			<a href="#!" class="brand-logo center">TWITTER SENTIMENT ANALYSIS</a>
+			<ul class="right">
+				<li><a href="/add-topic">Add Topics</a></li>
+				<li class="active"><a href="/view-topic">View Topics</a></li>
+			</ul>
+		</div>
+	</nav>
 	<div class="valign-wrapper row login-box">
 		<div class="col card s10 pull-s1 m4 pull-m4 l4 pull-l4">
-			<table class="highlight">
-				<thead>
-					<tr>
-						<th>Sr No</th>
-						<th>Title</th>
-						<th>Status</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Biden</td>
-						<td>Pending</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Ukraine</td>
-						<td>Complete</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Will Smith</td>
-						<td>Pending</td>
-					</tr>
-				</tbody>
-			</table>
+			<!-- <div class="card-image">
+				
+			</div> -->
+			<div class="card-content">
+				<div th:if="${ not#lists.isEmpty(topicList)}">
+					<span class="card-title" style="text-align: center; font-weight: bold">Topics</span>
+					<hr/>
+					<table class="highlight">
+						<tr>
+							<th>Sr No</th>
+							<th>Title</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
+						<tr th:each="topic,iterator : ${topicList}">
+							<td th:text="${iterator.index + + 1}"></td>
+							<td th:text="${topic.title}"></td>
+							<td th:text="${topic.status}"></td>
+							<td><a class="waves-effect waves-light btn pink" href="/word-cloud">View Result 
+							<i class="material-icons right">cloud</i></a></td>
+						</tr>
+					</table>
+				</div>
+				<div th:unless="${ not#lists.isEmpty(topicList)}">
+					<span class="card-title">No Topics. Please add a topic</span>
+				</div>
+			</div>
 		</div>
 	</div>
 
