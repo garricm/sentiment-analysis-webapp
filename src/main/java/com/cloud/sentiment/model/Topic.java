@@ -37,6 +37,9 @@ public class Topic {
 	@Column(name = "last_modified_date")
 	private Date lastModifiedTime;
 
+	@Column(name = "status")
+	private String status;
+
 	public long getId() {
 		return id;
 	}
@@ -77,6 +80,14 @@ public class Topic {
 		this.lastModifiedTime = lastModifiedTime;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -90,8 +101,9 @@ public class Topic {
 		builder.append(createdTime);
 		builder.append(", lastModifiedTime=");
 		builder.append(lastModifiedTime);
+		builder.append(", status=");
+		builder.append(status);
 		builder.append("]");
 		return builder.toString();
 	}
-
 }
